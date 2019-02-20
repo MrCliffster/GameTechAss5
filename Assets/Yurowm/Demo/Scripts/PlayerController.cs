@@ -9,11 +9,14 @@ public class PlayerController : MonoBehaviour {
 	public Arsenal[] arsenal;
     public int moveSpeed;
     public int rotationSpeed;
+    public Canvas UI;
 
 	private Animator animator;
     private CharacterController cc;
     private CameraManager cm;
     private Actions actions;
+    public bool inGame = false;
+    private int numCollected = 0;
 
     void Awake() {
 		animator = GetComponent<Animator> ();
@@ -59,15 +62,23 @@ public class PlayerController : MonoBehaviour {
 
     public void Update()
     {
-        float fwd = Input.GetAxis("Vertical");
-        transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime, 0));
-        if (System.Math.Abs(fwd) > 0) {
-            cc.Move(transform.TransformDirection(Vector3.forward * Time.deltaTime * moveSpeed * fwd));
-            actions.Run();
-        }
-        else
+        if (inGame)
         {
-            actions.Stay();
+            if (numCollected == 2)
+            {
+                UI.GetComponent<UIController>().EndGame();
+            }
+            float fwd = Input.GetAxis("Vertical");
+            transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime, 0));
+            if (System.Math.Abs(fwd) > 0)
+            {
+                cc.Move(transform.TransformDirection(Vector3.forward * Time.deltaTime * moveSpeed * fwd));
+                actions.Run();
+            }
+            else
+            {
+                actions.Stay();
+            }
         }
     }
 
@@ -83,6 +94,7 @@ public class PlayerController : MonoBehaviour {
             emitOverride.startLifetime = 10f;
             ps.Emit(emitOverride, 20);
             cm.hasPickup = true;
+            this.numCollected++;
         }
         if (other.name.Contains("Room1"))
         {
