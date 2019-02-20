@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     private CharacterController cc;
     private CameraManager cm;
     private Actions actions;
+    private bool hasPickup = false;
 
     void Awake() {
 		animator = GetComponent<Animator> ();
@@ -85,6 +86,10 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log("Entered room 3");
             cm.EnterRoom3();
+        } else if (other.CompareTag("Pickup"))
+        {
+            other.gameObject.SetActive(false);
+            this.hasPickup = true;
         }
     }
 }
