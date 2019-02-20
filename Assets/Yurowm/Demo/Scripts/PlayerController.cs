@@ -86,10 +86,19 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log("Entered room 3");
             cm.EnterRoom3();
-        } else if (other.CompareTag("Pickup"))
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pickup"))
         {
+            Debug.Log("picked-up");
             other.gameObject.SetActive(false);
-            GetComponent<ParticleSystem>().emission.SetBurst(0, new ParticleSystem.Burst(1f, 10));
+            ParticleSystem ps = FindObjectOfType<ParticleSystem>();
+            ParticleSystem.EmitParams emitOverride = new ParticleSystem.EmitParams();
+            emitOverride.startLifetime = 10f;
+            ps.Emit(emitOverride, 20);
             this.hasPickup = true;
         }
     }

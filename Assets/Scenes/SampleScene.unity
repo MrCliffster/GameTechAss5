@@ -621,7 +621,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119736, guid: f55f1ed084c77b742a3898e5da2214d3, type: 3}
       propertyPath: m_Name
-      value: decorative_wall_H
+      value: Pickup from Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 119736, guid: f55f1ed084c77b742a3898e5da2214d3, type: 3}
       propertyPath: m_TagString
@@ -657,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 456772, guid: f55f1ed084c77b742a3898e5da2214d3, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 456772, guid: f55f1ed084c77b742a3898e5da2214d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -714,12 +714,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!4 &379730979 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 456772, guid: f55f1ed084c77b742a3898e5da2214d3,
-    type: 3}
-  m_PrefabInstance: {fileID: 379730976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &479467327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1635,12 +1629,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235057282}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -2.31, y: 1.51, z: -6.64}
+  m_LocalScale: {x: 0.20000014, y: 0.50000024, z: 0.20000012}
   m_Children: []
-  m_Father: {fileID: 379730979}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &1235057284
 ParticleSystemRenderer:
@@ -1712,7 +1706,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235057282}
   serializedVersion: 6
-  lengthInSec: 2
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -1840,7 +1834,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 30
       minScalar: 5
       maxCurve:
         serializedVersion: 2
