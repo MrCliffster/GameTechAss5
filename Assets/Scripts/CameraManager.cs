@@ -8,6 +8,11 @@ public class CameraManager : MonoBehaviour
     public Camera room2;
     public Camera room3;
 
+    public GameObject topDoor;
+    public GameObject botDoor;
+
+    public bool hasPickup = false;
+
     [SerializeField]
     private float lowerBound;
     [SerializeField]
@@ -60,9 +65,18 @@ public class CameraManager : MonoBehaviour
 
     public void EnterRoom1()
     {
-        activeCam.enabled = false;
-        activeCam = room1;
-        activeCam.enabled = true;
+        if (hasPickup)
+        {
+            if (topDoor.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Closed"))
+            {
+                topDoor.GetComponent<Animator>().SetTrigger("Slide");
+                botDoor.GetComponent<Animator>().SetTrigger("Slide");
+            }
+            activeCam.enabled = false;
+            activeCam = room1;
+            activeCam.enabled = true;
+            
+        }
     }
 
     public void EnterRoom2()

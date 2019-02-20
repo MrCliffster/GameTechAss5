@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour {
     private CharacterController cc;
     private CameraManager cm;
     private Actions actions;
-    private bool hasPickup = false;
 
     void Awake() {
 		animator = GetComponent<Animator> ();
@@ -71,26 +70,10 @@ public class PlayerController : MonoBehaviour {
             actions.Stay();
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("Entered another room");
-        if (other.name.Contains("Room1"))
-        {
-            Debug.Log("Entered room 1");
-            cm.EnterRoom1();
-        } else if (other.name.Contains("Room2"))
-        {
-            Debug.Log("Entered room 2");
-            cm.EnterRoom2();
-        } else if (other.name.Contains("Room3"))
-        {
-            Debug.Log("Entered room 3");
-            cm.EnterRoom3();
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Entered a collider!");
         if (other.CompareTag("Pickup"))
         {
             Debug.Log("picked-up");
@@ -99,7 +82,22 @@ public class PlayerController : MonoBehaviour {
             ParticleSystem.EmitParams emitOverride = new ParticleSystem.EmitParams();
             emitOverride.startLifetime = 10f;
             ps.Emit(emitOverride, 20);
-            this.hasPickup = true;
+            cm.hasPickup = true;
+        }
+        if (other.name.Contains("Room1"))
+        {
+            Debug.Log("Entered room 1");
+            cm.EnterRoom1();
+        }
+        else if (other.name.Contains("Room2"))
+        {
+            Debug.Log("Entered room 2");
+            cm.EnterRoom2();
+        }
+        else if (other.name.Contains("Room3"))
+        {
+            Debug.Log("Entered room 3");
+            cm.EnterRoom3();
         }
     }
 }
