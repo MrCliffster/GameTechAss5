@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour {
         } else if (other.CompareTag("Pickup"))
         {
             other.gameObject.SetActive(false);
+            GetComponent<ParticleSystem>().emission.SetBurst(0, new ParticleSystem.Burst(1f, 10));
             this.hasPickup = true;
         }
     }
